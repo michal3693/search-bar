@@ -1,0 +1,30 @@
+<div class="search-container">
+  <div class="search-content">
+    <mat-form-field class="search-bar-form-field" appearance="fill">
+      <input
+        type="text"
+        placeholder="Search"
+        matInput
+        [formControl]="searchBarControl"
+        [matAutocomplete]="suggestionsAutocomplete"
+        class="search-bar-input"
+      />
+      <mat-autocomplete #suggestionsAutocomplete="matAutocomplete">
+        <mat-option
+          *ngFor="let suggestion of filteredSuggestions | async"
+          [value]="suggestion"
+        >
+          {{ suggestion }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button
+      (click)="searchButtonHandler(searchBarControl.value)"
+      mat-fab
+      color="accent"
+      class="search-bar-button"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</div>
